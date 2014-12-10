@@ -1,12 +1,11 @@
 template(name='menu')
-  nav.navbar.navbar-default(role='navigation')
-    .navbar-header
-      button.navbar-toggle(type='button', data-target='#navbarCollapse', data-toggle='collapse')
-        i.fa.fa-bars
-      a.navbar-brand(href='#'): i.fa.fa-home
-    #navbarCollapse.collapse.navbar-collapse
-      ul.nav.navbar-nav.navbar-right
-        li
-          i.fa.fa-sign-in
-          | Connection
+  nav.navbar.navbar-default.navbar-fixed-top(role='navigation')
+    .container
+      .navbar-header
+        button.navbar-toggle(type='button', data-target='#navbarCollapse', data-toggle='collapse')
+          i.fa.fa-bars
+        a.navbar-brand(href='#'): i.fa.fa-home
+      #navbarCollapse.collapse.navbar-collapse
+        ul.nav.navbar-nav.navbar-right
+          li.active: a(href='signin'): i.fa.fa-sign-in  Sign in
     
