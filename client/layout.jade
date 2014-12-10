@@ -1,0 +1,18 @@
+head
+  title Market Analysis
+  meta(charset='utf-8')
+  meta(name='viewport', content='width=device-width, maximum-scale=1, initial-scale=1, user-scalable=no')
+  meta(name='apple-mobile-web-app-capable', content='yes')
+  meta(name='apple-mobile-web-app-status-bar-style', content='black')
+  meta(name='apple-mobile-web-app-capable', content='yes')
+  meta(name='mobile-web-app-capable', content='yes')
+body
+
+template(name='layout')
+  +famousContext id='mainCtx'
+    +HeaderFooterLayout size='[undefined,undefined]' headerSize='50' footerSize='0'
+      +StateModifier align='[.5,.5]' origin='[.5,.5]' target='header' 
+        +Surface
+          +menu
+      +RenderController target='content'
+        +yield
