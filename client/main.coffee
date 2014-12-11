@@ -1,10 +1,10 @@
-Router.configure controller: 'MainController'
-
 class @MainController extends RouteController
   action: ->
     console.log 'action'
+    #$('.collapse').collapse()
     @render()
 
+Router.configure controller: 'MainController'
 Router.plugin 'dataNotFound', notFoundTemplate: 'notFound'
 Router.plugin 'loading',  loadingTemplate: 'loading'
 Router.route '/',
