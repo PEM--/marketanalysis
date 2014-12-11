@@ -5,8 +5,18 @@ template(name='menu')
         button.navbar-toggle(type='button')
           i.fa.fa-bars
         a.navbar-brand(href='/'): i.fa.fa-area-chart
-      #navbarCollapse.collapse.navbar-collapse
+      //.collapse.navbar-collapse
         ul.nav.navbar-nav.navbar-right
-          +each items
-            li(class=act): a(href=rt): i.fa(class=ic)= lbl
-    
+          +innermenu
+
+template(name='sidemenu')
+  +StateModifier id='sidemenu' align='[0,0]' origin='[0,0]' size=side translate='[-200, 0, 200]'
+    +Surface class='darkgray' size=side
+      | 
+    +innermenu
+
+template(name='innermenu')
+  +SequentialLayout direction='Y' size=side align='[0,0]' origin='[0,0]'
+    +famousEach items
+      +Surface class=act size='[200, 50]'
+        a(href=rt): i.fa(class=ic)= lbl

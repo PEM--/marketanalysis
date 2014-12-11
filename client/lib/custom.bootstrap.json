@@ -31,7 +31,7 @@
   "close":                false,
 
   "component-animations": true,
-  "dropdowns":            true,
+  "dropdowns":            false,
   "modals":               false,
   "tooltip":              false,
   "popovers":             false,
@@ -40,7 +40,7 @@
   "affix":                false,
   "alert":                false,
   "button":               false,
-  "collapse":             true,
+  "collapse":             false,
   "scrollspy":            false,
   "tab":                  false,
   "transition":           false,

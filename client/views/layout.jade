@@ -10,11 +10,7 @@ body
 
 template(name='layout')
   +famousContext id='mainCtx'
-    +StateModifier id='sidemenu' align='[0,.5]' origin='[1,.5]' size=side translate='[0, 0, 200]'
-      +Surface class='darkgray' 
-        p Test
-        p Test
-        p Test
+    +sidemenu
     +StateModifier align='[0,.5]' origin='[0,.5]' size=main
       +HeaderFooterLayout headerSize='50' footerSize='0'
         +StateModifier align='[.5,.5]' origin='[.5,.5]' target='header' translate='[0, 0, 100]'
