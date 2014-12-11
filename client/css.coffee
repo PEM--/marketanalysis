@@ -13,3 +13,9 @@ css
 .add 'body',
   webkitFontSmoothing: 'antialiased'
   fontFamily: 'Lato'
+  userSelect: 'none'
+  msUserSelect: 'none'
+  mozUserSelect: 'none'
+  webkitUserSelect: 'none'
+  webkitTouchCallout: 'none'
+  cursor: 'default'

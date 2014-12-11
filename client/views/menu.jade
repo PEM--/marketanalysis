@@ -17,7 +17,11 @@ template(name='menuTop')
   +SequentialLayout direction='X' align='[1,.5]' origin='[1,.5]' itemSpacing=spacing
     +famousEach items
       +Surface id=rt class='menulabel' size=itemSize
-        p: i.fa(class=ic)= lbl
+        +menuTopItem
+
+template(name='menuTopItem')
+  p: i.fa(class=ic)= lbl
+
 
 template(name='sideMenu')
   +StateModifier id='sideMenu' align='[0,0]' origin='[0,0]' size=side translate=translate
@@ -30,4 +34,7 @@ template(name='innerSideMenu')
     +SequentialLayout direction='Y' size=side align='[0,0]' origin='[0,0]'
       +famousEach items
         +Surface id=rt class=act size=itemSize align='[.5,0]' origin='[.5,0]'
-          p: i.fa(class=ic)= lbl
+          +sideMenuItem
+
+template(name='sideMenuItem')
+  p: i.fa(class=ic)= lbl

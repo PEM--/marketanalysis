@@ -22,7 +22,9 @@ class MainMenu
     Template.menu.rendered = =>
       @fview = FView.byId 'sideMenu'
       menuHome = FView.byId 'menuHome'
-      menuHome.surface.on 'click', -> Router.go '/'
+      menuHome.surface.on 'click', =>
+        @setMenuItem()
+        Router.go '/'
       hackyColorTrans = "background-color #{@options.transition.duration}ms, \
         color #{@options.transition.duration}ms"
       css.add ['.menubutton', '.menulabel'],
@@ -55,6 +57,9 @@ class MainMenu
       buttonSize: => "[#{@options.menuHeight},#{@options.menuHeight}]"
     Template.menuTop.rendered = =>
       @menuUnderline = (FView.byId 'menuUnderline').modifier
+    Template.menuTopItem.rendered = ->
+      surf = (FView.byId @data.rt).surface
+      surf.on 'click', => Router.go "/#{@data.rt}"
     @items = []
     Template.menuTop.helpers
       items: => @items
@@ -71,6 +76,16 @@ class MainMenu
       items: => _.extend {act:'menuitem inactive'}, item for item in @items
       side: => "[#{@options.sideMenuWidth}, #{rwindow.innerHeight()}]"
       itemSize: => "[#{@options.sideMenuWidth}, #{@options.menuHeight}]"
+    Template.menuTopItem.rendered = ->
+      surf = (FView.byId @data.rt).surface
+      surf.on 'click', =>
+        mainMenu.setMenuItem @data.rt
+        Router.go "/#{@data.rt}"
+    Template.sideMenuItem.rendered = ->
+      surf = (FView.byId @data.rt).surface
+      surf.on 'click', =>
+        mainMenu.setMenuItem @data.rt
+        Router.go "/#{@data.rt}"
     @depend()
   addRoute: (route, icon, label) ->
     @items.push {rt: route, ic: icon, lbl: label}
