@@ -1,43 +1,66 @@
-class SideMenu
+class MainMenu
   constructor: ->
-    @isMenuActive = false
-    @isMenuActiveDeps = new Tracker.Dependency
-    Template.sidemenu.rendered = =>
-      @fview = FView.byId 'sidemenu'
+    @isSideMenuActive = false
+    @isSideMenuActiveDeps = new Tracker.Dependency
+    Template.sideMenu.rendered = =>
+      @fview = FView.byId 'sideMenu'
+      menuHome = FView.byId 'menuHome'
+      menuHome.surface.on 'click', -> Router.go '/'
+      css.add ['.menubutton', '.menulabel'],
+        textAlign: 'center'
+        lineHeight: CSSC.px 50
+        cursor: 'pointer'
+        #backgroundColor: CSSC.darkgray
+      .add '.darkgray',
+        backgroundColor: CSSC.darkgray
+      .add ['.menuitem-active', '.menuitem-inactive'],
+        textAlign: 'center'
+        lineHeight: CSSC.px 50
+        fontWeight: 'bolder'
+        cursor: 'pointer'
+      .add '.menuitem-active',
+        backgroundColor: CSSC.gray
+        color: CSSC.white
+      .add '.menuitem-inactive',
+        color: CSSC.silver
+    Template.menuHamburger.rendered = =>
+      menuHamburger = FView.byId 'menuHamburger'
+      menuHamburger.surface.on 'click', => @toggle()
+    Template.sideMenu.helpers
+      side: -> "[200, #{rwindow.innerHeight()}]"
+    Template.menuTop.helpers
+      items: ->
+        [
+          {act:'menuitem-active',rt:'signin',ic:'fa-sign-in',lbl:' Connexion'}
+          {act:'menuitem-inactive',rt:'signout',ic:'fa-sign-out',lbl:' Sortir'}
+          {act:'menuitem-inactive',rt:'profile',ic:'fa-user',lbl:' Profil'}
+          {act:'menuitem-inactive',rt:'company',ic:'fa-building',lbl:' Sociétés'}
+        ]
+    Template.innerSideMenu.helpers
+      items: ->
+        [
+          {act:'menuitem-active',rt:'signin',ic:'fa-sign-in',lbl:' Connexion'}
+          {act:'menuitem-inactive',rt:'signout',ic:'fa-sign-out',lbl:' Sortir'}
+          {act:'menuitem-inactive',rt:'profile',ic:'fa-user',lbl:' Profil'}
+          {act:'menuitem-inactive',rt:'company',ic:'fa-building',lbl:' Sociétés'}
+        ]
     @depend()
   depend: =>
     Tracker.autorun =>
-      @isMenuActiveDeps.depend()
-      posx = if @isMenuActive then 0 else -200
+      @isSideMenuActiveDeps.depend()
+      posx = if @isSideMenuActive then 0 else -200
       @fview?.modifier.setTransform (Transform.translate posx, 0, 200),
         duration: 300
   activate: ->
-    if @isMenuActive is false
-      @isMenuActive = true
-      @isMenuActiveDeps.changed()
+    if @isSideMenuActive is false
+      @isSideMenuActive = true
+      @isSideMenuActiveDeps.changed()
   deactivate: ->
-    if @isMenuActive is true
-      @isMenuActive = false
-      @isMenuActiveDeps.changed()
+    if @isSideMenuActive is true
+      @isSideMenuActive = false
+      @isSideMenuActiveDeps.changed()
   toggle: ->
-    @isMenuActive = not @isMenuActive
-    @isMenuActiveDeps.changed()
+    @isSideMenuActive = not @isSideMenuActive
+    @isSideMenuActiveDeps.changed()
 
-@sidemenu = new SideMenu
-
-Template.sidemenu.helpers
-  side: -> "[200, #{rwindow.innerHeight()}]"
-
-Template.innermenu.helpers
-  items: ->
-    [
-      {act:'active',rt:'signin',ic:'fa-sign-in',lbl:' Connexion'}
-      {act:'',rt:'signout',ic:'fa-sign-out',lbl:' Sortir'}
-      {act:'',rt:'profile',ic:'fa-user',lbl:' Profil'}
-      {act:'',rt:'company',ic:'fa-building',lbl:' Sociétés'}
-    ]
-
-Template.menu.events
-  'click button.navbar-toggle': (e, tpl) ->
-    e.preventDefault()
-    sidemenu.toggle()
+@mainMenu = new MainMenu

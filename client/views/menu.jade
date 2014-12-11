@@ -1,22 +1,29 @@
 template(name='menu')
-  nav.navbar.navbar-default.navbar-fixed-top(role='navigation')
-    .container
-      .navbar-header
-        button.navbar-toggle(type='button')
-          i.fa.fa-bars
-        a.navbar-brand(href='/'): i.fa.fa-area-chart
-      //.collapse.navbar-collapse
-        ul.nav.navbar-nav.navbar-right
-          +innermenu
+  +Surface id='menuHome' class='menubutton' align='[0,.5]' origin='[0,.5]' size='[50, 50]'
+    p: i.fa.fa-area-chart
+  if rwindow.screen 'lte' 'xsmall'
+    +menuHamburger
+  else
+    +menuTop
 
-template(name='sidemenu')
-  +StateModifier id='sidemenu' align='[0,0]' origin='[0,0]' size=side translate='[-200, 0, 200]'
+template(name='menuHamburger') 
+  +Surface id='menuHamburger' class='menubutton' align='[1,.5]' origin='[1,.5]' size='[50, 50]'
+    p: i.fa.fa-bars
+
+template(name='menuTop')
+  +SequentialLayout direction='X' align='[1,.5]' origin='[1,.5]' size='[600, 50]'
+    +famousEach items
+      +Surface class='menulabel' size='[150, 50]'
+        p= lbl
+
+template(name='sideMenu')
+  +StateModifier id='sideMenu' align='[0,0]' origin='[0,0]' size=side translate='[-200, 0, 200]'
     +Surface class='darkgray' size=side
       | 
-    +innermenu
+    +innerSideMenu
 
-template(name='innermenu')
+template(name='innerSideMenu')
   +SequentialLayout direction='Y' size=side align='[0,0]' origin='[0,0]'
     +famousEach items
-      +Surface class=act size='[200, 50]'
-        a(href=rt): i.fa(class=ic)= lbl
+      +Surface class=act size='[200, 50]' align='[.5,0]' origin='[.5,0]'
+        p: i.fa(class=ic)= lbl

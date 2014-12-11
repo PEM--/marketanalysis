@@ -1,4 +1,4 @@
-css = new CSSC
+@css = new CSSC
 css
 .add '@font-face',
   fontFamily: 'Lato'
@@ -13,6 +13,3 @@ css
 .add 'body',
   webkitFontSmoothing: 'antialiased'
   fontFamily: 'Lato'
-.add '.darkgray',
-  backgroundColor: CSSC.darkgray
-  color: CSSC.white
