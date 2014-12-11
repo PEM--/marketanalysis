@@ -4,6 +4,8 @@ class @MainController extends RouteController
     #$('.collapse').collapse()
     @render()
 
+@Transform = famous.core.Transform
+
 Router.configure controller: 'MainController'
 Router.plugin 'dataNotFound', notFoundTemplate: 'notFound'
 Router.plugin 'loading',  loadingTemplate: 'loading'
