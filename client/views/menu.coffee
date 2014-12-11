@@ -11,6 +11,7 @@ class MainMenu
     sideMenuColor: CSSC.silver
     sideMenuSelBgColor: CSSC.gray
     sideMenuSelColor: CSSC.white
+    transition: curve: 'easeInOut', duration: 300
   constructor: (options) ->
     @options = Utility.clone @constructor.DEFAULT_OPTIONS or \
       MainMenu.DEFAULT_OPTIONS
@@ -22,6 +23,8 @@ class MainMenu
       @fview = FView.byId 'sideMenu'
       menuHome = FView.byId 'menuHome'
       menuHome.surface.on 'click', -> Router.go '/'
+      hackyColorTrans = "background-color #{@options.transition.duration}ms, \
+        color #{@options.transition.duration}ms"
       css.add ['.menubutton', '.menulabel'],
         lineHeight: CSSC.px @options.menuHeight
         cursor: 'pointer'
@@ -33,12 +36,16 @@ class MainMenu
       .add '.menuitem',
         textAlign: 'center'
         lineHeight: CSSC.px @options.menuHeight
-        fontWeight: 'bolder'
         cursor: 'pointer'
+        backgroundColor: @options.sideMenuBgColor
+        color: @options.sideMenuColor
+        webkitTransition: hackyColorTrans
+        mozTransition: hackyColorTrans
+        oTransition: hackyColorTrans
+        transition: hackyColorTrans
       .add '.menuitem.active',
         backgroundColor: @options.sideMenuSelBgColor
         color: @options.sideMenuSelColor
-      .add '.menuitem.inactive', color: @options.sideMenuColor
     Template.menu.helpers
       buttonSize: => "[#{@options.menuHeight},#{@options.menuHeight}]"
     Template.menuHamburger.rendered = =>
@@ -72,8 +79,7 @@ class MainMenu
       @isSideMenuActiveDeps.depend()
       posx = if @isSideMenuActive then 0 else -@options.sideMenuWidth
       @fview?.modifier.setTransform (Transform.translate posx, \
-        0, @options.sideMenuZindex),
-        duration: 300
+        0, @options.sideMenuZindex), @options.transition
   activate: ->
     if @isSideMenuActive is false
       @isSideMenuActive = true
@@ -86,18 +92,24 @@ class MainMenu
     @isSideMenuActive = not @isSideMenuActive
     @isSideMenuActiveDeps.changed()
   setMenuItem: (route) ->
-    idx = _.indexOf @items, (_.find @items, (item) -> item.rt is route)
-    menuUnderline = (FView.byId 'menuUnderline').modifier
-    if idx is -1
-      @menuUnderline.setOpacity 0, duration: 300
+    found = _.indexOf @items, (_.find @items, (item) -> item.rt is route)
+    if rwindow.screen 'lte', 'xsmall'
+      for item, idx in @items
+        surf = (FView.byId "#{item.rt}").surface
+        if found is idx
+          surf.addClass 'active'
+        else
+          surf.removeClass 'active'
     else
-      @menuUnderline.setOpacity 1, duration: 300
-      posX = (@items.length-idx-1)*@options.labelWidth + \
-        (@items.length-idx-1)*@options.labelSpacing
-      @menuUnderline.setTransform (Transform.translate -posX,0,0),
-        duration: 300
-  setOptions: (options) ->
-    @_optionsManager.patch options
+      if found is -1
+        @menuUnderline.setOpacity 0, @options.transition
+      else
+        @menuUnderline.setOpacity 1, @options.transition
+        posX = (@items.length-found-1)*@options.labelWidth + \
+          (@items.length-found-1)*@options.labelSpacing
+        @menuUnderline.setTransform (Transform.translate -posX,0,0), \
+          @options.transition
+  setOptions: (options) -> @_optionsManager.patch options
 
 @mainMenu = new MainMenu
 mainMenu.addRoute 'signin', 'fa-sign-in', ' Connexion'
