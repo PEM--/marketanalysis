@@ -4,8 +4,6 @@ class @MainController extends RouteController
     #$('.collapse').collapse()
     @render()
 
-@Transform = famous.core.Transform
-
 Router.configure controller: 'MainController'
 Router.plugin 'dataNotFound', notFoundTemplate: 'notFound'
 Router.plugin 'loading',  loadingTemplate: 'loading'
@@ -25,11 +23,8 @@ Router.route '/:others',
 
 Logger.setLevel 'famous-views', 'info'
 
-Template.home.rendered = ->
-  console.log 'Home rendered'
+Template.home.rendered = -> console.log 'Home rendered'
 
-Template.notFound.rendered = ->
-  console.log 'notFound rendered'
+Template.notFound.rendered = -> console.log 'notFound rendered'
 
-Template.loading.rendered = ->
-  console.log 'loading rendered'
+Template.loading.rendered = -> console.log 'loading rendered'

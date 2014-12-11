@@ -1,5 +1,5 @@
 template(name='menu')
-  +Surface id='menuHome' class='menubutton' align='[0,.5]' origin='[0,.5]' size='[50, 50]'
+  +Surface id='menuHome' class='menubutton' align='[0,.5]' origin='[0,.5]' size=buttonSize
     p: i.fa.fa-area-chart
   if rwindow.screen 'lte' 'xsmall'
     +menuHamburger
@@ -7,21 +7,21 @@ template(name='menu')
     +menuTop
 
 template(name='menuHamburger') 
-  +Surface id='menuHamburger' class='menubutton' align='[1,.5]' origin='[1,.5]' size='[50, 50]'
+  +Surface id='menuHamburger' class='menubutton' align='[1,.5]' origin='[1,.5]' size=buttonSize
     p: i.fa.fa-bars
 
 template(name='menuTop')
-  +StateModifier id='menuUnderline' align='[1,1]' origin='[1,1]' size='[100,4]' opacity='0'
+  +StateModifier id='menuUnderline' align='[1,1]' origin='[1,1]' size=underLineSize opacity='0'
     +Surface class='menuUnderline'
       |  
-  +SequentialLayout direction='X' align='[1,.5]' origin='[1,.5]' size='[460, 50]' itemSpacing='20'
+  +SequentialLayout direction='X' align='[1,.5]' origin='[1,.5]' itemSpacing=spacing
     +famousEach items
-      +Surface id=rt class='menulabel' size='[100, 50]'
+      +Surface id=rt class='menulabel' size=itemSize
         p: i.fa(class=ic)= lbl
 
 template(name='sideMenu')
-  +StateModifier id='sideMenu' align='[0,0]' origin='[0,0]' size=side translate='[-200, 0, 200]'
-    +Surface class='darkgray' size=side
+  +StateModifier id='sideMenu' align='[0,0]' origin='[0,0]' size=side translate=translate
+    +Surface class='sideMenu' size=side
       | 
     +innerSideMenu
 
@@ -29,5 +29,5 @@ template(name='innerSideMenu')
   if rwindow.screen 'lte' 'xsmall'
     +SequentialLayout direction='Y' size=side align='[0,0]' origin='[0,0]'
       +famousEach items
-        +Surface id=rt class=act size='[200, 50]' align='[.5,0]' origin='[.5,0]'
+        +Surface id=rt class=act size=itemSize align='[.5,0]' origin='[.5,0]'
           p: i.fa(class=ic)= lbl
