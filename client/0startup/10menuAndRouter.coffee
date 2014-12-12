@@ -36,6 +36,6 @@ Logger.setLevel 'famous-views', 'info'
 
 @mainMenu = new RwdSimpleMenu
 mainMenu.addRoute 'signin', 'fa-sign-in', ' Sign in'
-mainMenu.addRoute 'profile', 'fa-user', ' Profile'
-mainMenu.addRoute 'company', 'fa-building', ' Company'
-mainMenu.addRoute 'signout', 'fa-sign-out', ' Sign out'
+#mainMenu.addRoute 'profile', 'fa-user', ' Profile'
+#mainMenu.addRoute 'company', 'fa-building', ' Company'
+#mainMenu.addRoute 'signout', 'fa-sign-out', ' Sign out'
