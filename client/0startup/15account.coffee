@@ -28,3 +28,6 @@ AccountsTemplates.configure
   # Redirects
   homeRoutePath: '/profile'
   redirectTimeout: 4000
+
+AccountsTemplates.configureRoute 'signIn',
+  redirect: '/profile'
