@@ -15,9 +15,6 @@ Router.route '/loading',
   name: 'loading'
   layoutTemplate: 'layout'
   controller: 'MainController'
-Router.route '/signin',
-  layoutTemplate: 'layout'
-  controller: 'MainController'
 Router.route '/signout',
   layoutTemplate: 'layout'
   controller: 'MainController'
@@ -27,6 +24,11 @@ Router.route '/profile',
 Router.route '/company',
   layoutTemplate: 'layout'
   controller: 'MainController'
+Router.route '/signin',
+  layoutTemplate: 'layout'
+  controller: 'MainController'
+
+# Allways put this route at the very end of route declarations
 Router.route '/:others',
   name: 'notFound'
   layoutTemplate: 'layout'

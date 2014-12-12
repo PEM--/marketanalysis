@@ -1,13 +1,4 @@
 template(name='signin')
   +StateModifier align='[.5,.5]' origin='[.5,.5]'
     +Surface size='[true, true]'
-      h1 Sign in
-      .row
-        form#login-form.form(action='action')
-          .form-group
-            label(for='login-email') Email address
-            input#login-email.form-control(type='email', placeholder='titi@company.com')
-          .form-group
-            label(for='login-password') Password
-            input#login-password.form-control(type='password', placeholder='AExf23gf')
-          button#login-button.btn.btn-default(type='submit') Sign in
+      +atForm state='signIn'

@@ -9,3 +9,8 @@ Meteor.publish 'groupUsers', (groupId) ->
   selector = _id: $in: group.members
   options = fields: username: 1
   Meteor.users.find selector, options
+
+if Meteor.users.find().count() is 0
+  seedUserId = Accounts.createUser
+    email: 'pem@example.com'
+    password: '123456'
