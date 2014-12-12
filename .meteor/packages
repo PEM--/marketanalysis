@@ -6,7 +6,6 @@
 meteor-platform
 mquandalle:jade
 raix:famono
-nemo64:bootstrap
 accounts-password
 meteorhacks:npm
 iron:router
@@ -18,7 +17,9 @@ coffeescript
 pierreeric:cssc-famous
 gadicohen:famous-views
 fortawesome:fontawesome
-less
 gadicohen:reactive-window
 pierreeric:fview-flexgrid
+pierreeric:fview-rwdsimplemenu
+less
+nemo64:bootstrap
 
