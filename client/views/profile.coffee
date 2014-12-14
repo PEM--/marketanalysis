@@ -1,9 +1,10 @@
 Template.profile.created = ->
+  menu = RwdSimpleMenu.get()
   # Remove current signin menu item
-  mainMenu.removeRoute 'signin'
+  menu.removeRoute 'signin'
   # Add other menu item
-  mainMenu.addRoute 'profile', 'fa-user', ' Profile'
-  mainMenu.addRoute 'company', 'fa-building', ' Company'
+  menu.addRoute 'profile', 'fa-user', ' Profile'
+  menu.addRoute 'company', 'fa-building', ' Company'
   mainMenu.addRoute 'signout', 'fa-sign-out', ' Sign out'
   # Select current screen
-  mainMenu.setMenuItem 'profile'
+  menu.setMenuItem 'profile'
