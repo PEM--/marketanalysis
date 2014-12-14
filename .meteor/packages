@@ -6,15 +6,15 @@
 meteor-platform
 mquandalle:jade
 raix:famono
-meteorhacks:npm
+gadicohen:famous-views
 iron:router
-npm-container
+meteorhacks:npm
+#npm-container
 pierreeric:cssc
 pierreeric:cssc-colors
 pierreeric:cssc-normalize
 coffeescript
 pierreeric:cssc-famous
-gadicohen:famous-views
 fortawesome:fontawesome
 gadicohen:reactive-window
 pierreeric:fview-flexgrid
@@ -27,4 +27,3 @@ aldeed:autoform
 aldeed:collection2
 useraccounts:bootstrap
 softwarerero:accounts-t9n
-

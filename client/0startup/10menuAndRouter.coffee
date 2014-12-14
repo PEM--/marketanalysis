@@ -34,7 +34,7 @@ Router.route '/:others',
   layoutTemplate: 'layout'
   controller: 'MainController'
 
-Logger.setLevel 'famous-views', 'info'
+#Logger.setLevel 'famous-views', 'info'
 
 @mainMenu = new RwdSimpleMenu
 mainMenu.addRoute 'signin', 'fa-sign-in', ' Sign in'
