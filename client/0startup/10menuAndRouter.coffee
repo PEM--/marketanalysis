@@ -35,9 +35,18 @@ Router.route '/:others',
   controller: 'MainController'
 
 #Logger.setLevel 'famous-views', 'info'
+RwdSimpleMenu.get (menu) ->
+  menu.addRoute 'signin', 'fa-sign-in', ' Sign in'
+  #menu.addRoute 'profile', 'fa-user', ' Profile'
+  #menu.addRoute 'company', 'fa-building', ' Company'
+  #menu.addRoute 'signout', 'fa-sign-out', ' Sign out'
+,
+  underlineBgColor: '#086599'
 
-menu = RwdSimpleMenu.get()
-menu.addRoute 'signin', 'fa-sign-in', ' Sign in'
-#mainMenu.addRoute 'profile', 'fa-user', ' Profile'
-#mainMenu.addRoute 'company', 'fa-building', ' Company'
-#mainMenu.addRoute 'signout', 'fa-sign-out', ' Sign out'
+css = new CSSC
+css.add [
+  '.rwd-simple-menu-logo'
+  '.rwd-simple-menu-hamburger'
+],
+  lineHeight: CSSC.px 50
+  textAlign: 'center'

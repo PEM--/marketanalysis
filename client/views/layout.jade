@@ -10,10 +10,12 @@ body
 
 template(name='layout')
   +famousContext id='mainCtx'
-    +sideMenu
-    +StateModifier align='[.5,.5]' origin='[.5,.5]' size=main
-      +HeaderFooterLayout headerSize='50' footerSize='0'
-        +StateModifier align='[.5,.5]' origin='[.5,.5]' target='header' translate='[0, 0, 100]'
-            +menu
-        +RenderController target='content'
-          +yield
+    // Spare a place for the side menu once viewport size is settled
+    +StateModifier id='RwdSimpleMenuSideMenu'
+      |  
+    +HeaderFooterLayout headerSize='50' footerSize='0' align='[.5,.5]' origin='[.5,.5]' size=main
+      // Spare a place for the main menu once viewport size is settled
+      +StateModifier target='header' id='RwdSimpleMenuMainMenu'
+        |  
+      +RenderController target='content'
+        +yield

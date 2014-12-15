@@ -20,7 +20,7 @@ email@1.0.5-rc.1
 fastclick@1.0.2-rc.1
 follower-livedata@1.0.3-rc.1
 fortawesome:fontawesome@4.2.0_2
-gadicohen:famous-views@0.1.30-rc.4
+gadicohen:famous-views@0.1.30
 gadicohen:reactive-window@1.0.1
 geojson-utils@1.0.2-rc.1
 html-tools@1.0.3-rc.1
@@ -63,7 +63,6 @@ pierreeric:cssc@1.0.4
 pierreeric:cssc-colors@1.0.4
 pierreeric:cssc-famous@1.0.2
 pierreeric:cssc-normalize@1.0.1
-pierreeric:fview-flexgrid@0.1.0
 pierreeric:fview-rwdsimplemenu@0.2.0
 raix:famono@0.9.23
 random@1.0.2-rc.1

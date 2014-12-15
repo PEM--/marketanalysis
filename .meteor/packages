@@ -4,26 +4,24 @@
 # but you can also edit it by hand.
 
 meteor-platform
-mquandalle:jade
-raix:famono
-gadicohen:famous-views
-iron:router
-meteorhacks:npm
-#npm-container
+coffeescript
+less
+nemo64:bootstrap
+fortawesome:fontawesome
 pierreeric:cssc
 pierreeric:cssc-colors
 pierreeric:cssc-normalize
-coffeescript
 pierreeric:cssc-famous
-fortawesome:fontawesome
+mquandalle:jade
+raix:famono
+iron:router
+gadicohen:famous-views
+meteorhacks:npm
 gadicohen:reactive-window
-pierreeric:fview-flexgrid
 pierreeric:fview-rwdsimplemenu
 accounts-password
 accounts-base
-nemo64:bootstrap
-less
+softwarerero:accounts-t9n
+useraccounts:bootstrap
 aldeed:autoform
 aldeed:collection2
-useraccounts:bootstrap
-softwarerero:accounts-t9n
