@@ -1,6 +1,6 @@
 accounts-base@1.1.3-rc.1
 accounts-password@1.0.5-rc.1
-aldeed:autoform@4.2.0
+aldeed:autoform@4.2.1
 aldeed:collection2@2.2.0
 aldeed:simple-schema@1.1.0
 application-configuration@1.0.4-rc.1
@@ -46,13 +46,13 @@ logging@1.0.6-rc.1
 meteor@1.1.4-rc.1
 meteor-platform@1.2.1-rc.1
 meteorhacks:async@1.0.0
-meteorhacks:npm@1.2.1
+meteorhacks:npm@1.2.2
 minifiers@1.1.3-rc.2
 minimongo@1.0.6-rc.1
 mobile-status-bar@1.0.2-rc.1
 mongo@1.0.10-rc.1
 mongo-livedata@1.0.7-rc.1
-mquandalle:jade@0.3.0
+mquandalle:jade@0.4.1
 mrt:moment@2.6.0
 nemo64:bootstrap@3.3.0_1
 nemo64:bootstrap-data@3.3.0_1
@@ -83,7 +83,7 @@ tracker@1.0.4-rc.1
 ui@1.0.5-rc.1
 underscore@1.0.2-rc.1
 url@1.0.3-rc.1
-useraccounts:bootstrap@1.3.2
-useraccounts:core@1.3.2
+useraccounts:bootstrap@1.4.0
+useraccounts:core@1.4.0
 webapp@1.1.5-rc.1
 webapp-hashing@1.0.2-rc.1

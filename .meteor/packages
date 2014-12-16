@@ -15,7 +15,6 @@ pierreeric:cssc-famous
 mquandalle:jade
 raix:famono
 iron:router
-gadicohen:famous-views
 meteorhacks:npm
 gadicohen:reactive-window
 pierreeric:fview-rwdsimplemenu
@@ -25,3 +24,4 @@ softwarerero:accounts-t9n
 useraccounts:bootstrap
 aldeed:autoform
 aldeed:collection2
+gadicohen:famous-views
