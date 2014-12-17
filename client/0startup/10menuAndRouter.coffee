@@ -36,10 +36,10 @@ Router.route '/:others',
 
 #Logger.setLevel 'famous-views', 'info'
 RwdSimpleMenu.get (menu) ->
-  menu.addRoute 'signin', 'fa-sign-in', ' Sign in'
-  #menu.addRoute 'profile', 'fa-user', ' Profile'
-  #menu.addRoute 'company', 'fa-building', ' Company'
-  #menu.addRoute 'signout', 'fa-sign-out', ' Sign out'
+  menu.addRoute 'signin', ic: 'fa-sign-in', lbl: ' Sign in'
+  menu.addRoute 'profile', ic: 'fa-user', lbl: ' Profile'
+  menu.addRoute 'company', ic: 'fa-building', lbl: ' Company'
+  menu.addRoute 'signout', ic: 'fa-sign-out', lbl: ' Sign out'
 ,
   underlineBgColor: '#086599'
 
