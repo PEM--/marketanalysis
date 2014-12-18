@@ -6,6 +6,6 @@ Template.layout.helpers
 
 Template.layout.created = ->
   RwdSimpleMenu.get (menu) ->
-    menu.addRoute 'signin', ic: 'fa-sign-in', lbl: ' Sign in'
+    FView.log.info 'Menu created'
   ,
     underlineBgColor: '#086599'

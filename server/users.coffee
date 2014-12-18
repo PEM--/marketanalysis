@@ -12,5 +12,5 @@ Meteor.publish 'groupUsers', (groupId) ->
 
 if Meteor.users.find().count() is 0
   seedUserId = Accounts.createUser
-    email: 'p@p.com'
-    password: '123'
+    email: Meteor.settings.initialAccount.email
+    password: Meteor.settings.initialAccount.password

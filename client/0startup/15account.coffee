@@ -31,3 +31,19 @@ AccountsTemplates.configure
 
 AccountsTemplates.configureRoute 'signIn',
   redirect: '/profile'
+
+Tracker.autorun ->
+  @currentUser = Meteor.user()
+  console.log 'User ?', @currentUser
+  RwdSimpleMenu.get (menu) =>
+    console.log 'User ?', @currentUser, menu
+    if currentUser is null
+      menu.addRoute 'signin', ic: 'fa-sign-in', lbl: ' Sign in'
+      menu.removeRoute 'profile'
+      menu.removeRoute 'company'
+      menu.removeRoute 'signout'
+    else
+      menu.removeRoute 'signin'
+      menu.addRoute 'profile',ic: 'fa-user', lbl: ' Profile'
+      menu.addRoute 'company', ic: 'fa-building', lbl: ' Company'
+      menu.addRoute 'signout', ic: 'fa-sign-out', lbl: ' Sign out'
