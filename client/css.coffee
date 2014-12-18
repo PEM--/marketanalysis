@@ -4,7 +4,9 @@ css
   fontFamily: 'Lato'
   fontStyle: 'normal'
   fontWeight: 100
-  src: "local('Lato Regular'), local('Lato-Regular'), \
+  src: "\
+    local('Lato Regular'), \
+    local('Lato-Regular'), \
     url(http://fonts.gstatic.com/s/lato/v11/" +
       "8qcEw_nrk_5HEcCpYdJu8BTbgVql8nDJpwnrE27mub0.woff2) format('woff2')"
   unicodeRange: 'U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, \
@@ -12,7 +14,7 @@ css
     U+EFFD, U+F000'
 .add 'body',
   webkitFontSmoothing: 'antialiased'
-  fontFamily: 'Lato'
+  fontFamily: 'Lato, "Helvetica Neue", Arial, sans-serif'
   userSelect: 'none'
   msUserSelect: 'none'
   mozUserSelect: 'none'
