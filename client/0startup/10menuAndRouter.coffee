@@ -35,13 +35,6 @@ Router.route '/:others',
   controller: 'MainController'
 
 #Logger.setLevel 'famous-views', 'info'
-RwdSimpleMenu.get (menu) ->
-  menu.addRoute 'signin', ic: 'fa-sign-in', lbl: ' Sign in'
-  menu.addRoute 'profile', ic: 'fa-user', lbl: ' Profile'
-  menu.addRoute 'company', ic: 'fa-building', lbl: ' Company'
-  menu.addRoute 'signout', ic: 'fa-sign-out', lbl: ' Sign out'
-,
-  underlineBgColor: '#086599'
 
 css = new CSSC
 css.add [
