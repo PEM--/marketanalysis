@@ -10,10 +10,14 @@ body
 
 template(name='layout')
   +famousContext id='mainCtx'
+    +StateModifier align='[.5,.5]' origin='[.5,.5]'
+      +StateModifier opacity=opacity
+        +BkImageSurface sizemode='ASPECTFILL' positionmode='BOTTOM' content='/big_apple.jpg'
+          |  
     // Spare a place for the side menu once viewport size is settled
     +StateModifier id='RwdSimpleMenuSideMenu'
       |  
-    +HeaderFooterLayout headerSize='50' footerSize='0' align='[.5,.5]' origin='[.5,.5]' size=main
+    +HeaderFooterLayout headerSize='50' footerSize='0' align='[.5,.5]' origin='[.5,.5]' size=main translate='[0,0,10]'
       // Spare a place for the main menu once viewport size is settled
       +StateModifier target='header' id='RwdSimpleMenuMainMenu'
         |  

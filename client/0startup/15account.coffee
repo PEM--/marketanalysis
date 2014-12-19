@@ -34,9 +34,7 @@ AccountsTemplates.configureRoute 'signIn',
 
 Tracker.autorun ->
   @currentUser = Meteor.user()
-  console.log 'User ?', @currentUser
-  RwdSimpleMenu.get (menu) =>
-    console.log 'User ?', @currentUser, menu
+  RwdSimpleMenu.get (menu) ->
     if currentUser is null
       menu.addRoute 'signin', ic: 'fa-sign-in', lbl: ' Sign in'
       menu.removeRoute 'profile'

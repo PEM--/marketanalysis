@@ -6,8 +6,11 @@ rootUrl = __meteor_runtime_config__.ROOT_URL
 BrowserPolicy.content.allowConnectOrigin rootUrl
 BrowserPolicy.content.allowConnectOrigin (rootUrl.replace 'http', 'ws')
 # Allow origin for Meteor hosting
-BrowserPolicy.content.allowConnectOrigin 'https://marketanalysis.meteor.com'
-BrowserPolicy.content.allowConnectOrigin 'wss://marketanalysis.meteor.com'
+# TODO: Redirect to HTTPS
+BrowserPolicy.content.allowConnectOrigin 'http://*.meteor.com'
+BrowserPolicy.content.allowConnectOrigin 'ws://*.meteor.com'
+BrowserPolicy.content.allowConnectOrigin 'https://*.meteor.com'
+BrowserPolicy.content.allowConnectOrigin 'wss://*.meteor.com'
 # Allow Google analytics
 BrowserPolicy.content.allowScriptOrigin '*.google-analytics.com'
 # Allow the tracking pixel case of Google analytics

@@ -1,6 +1,6 @@
 class @MainController extends RouteController
   action: ->
-    console.log 'action'
+    console.log 'action', @
     #$('.collapse').collapse()
     @render()
 

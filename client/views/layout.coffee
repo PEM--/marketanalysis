@@ -1,4 +1,7 @@
 Template.layout.helpers
+  opacity: ->
+    currentPath = Router.current().location.get().path
+    opacity = if currentPath is '/' then 1 else 0
   main: ->
     Tracker.autorun ->
       curWidth = rwindow.innerWidth() ? 960
