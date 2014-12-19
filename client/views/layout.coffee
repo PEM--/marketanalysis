@@ -8,4 +8,4 @@ Template.layout.created = ->
   RwdSimpleMenu.get (menu) ->
     FView.log.info 'Menu created'
   ,
-    underlineBgColor: '#086599'
+    underlineBgColor: '#143153'
