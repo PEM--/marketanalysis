@@ -1,4 +1,25 @@
 +StateModifier align='[.5,.5]' origin='[.5,.5]'
-  +Surface size='[true, true]'
+  +Surface size='[undefined, undefined]'
     .text-center
-      h1 Welcome
+      h1 Profile de test
+    .container-fluid
+      .row
+        .col-xs-12
+          p.text-center
+            img.img-circle(src=testProfile.avatar128, alt='profile')
+      .row
+        .col-xs-6: p.text-right Prénom
+        .col-xs-6: p= testProfile.firstName
+      .row
+        .col-xs-6: p.text-right Nom
+        .col-xs-6: p= testProfile.lastName
+      .row
+        .col-xs-6: p.text-right Date de naissance
+        .col-xs-6: p= testProfile.dateOfBirth
+      .row
+        .col-xs-6: p.text-right Adresse
+        .col-xs-6
+          p= testProfile.streetAdress
+          p {{testProfile.zipCode}} - {{testProfile.city}}
+          p= testProfile.country
+        

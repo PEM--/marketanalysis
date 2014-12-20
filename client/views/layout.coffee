@@ -6,6 +6,10 @@ Template.layout.helpers
     Tracker.autorun ->
       curWidth = rwindow.innerWidth() ? 960
       "[#{Math.min 960, curWidth}, #{rwindow.innerHeight()}]"
+  testProfile: ->
+    console.log Meteor.settings.public.testProfile
+    Meteor.settings.public.testProfile
+  test: -> 'Test'
 
 Template.layout.created = ->
   RwdSimpleMenu.get (menu) ->
