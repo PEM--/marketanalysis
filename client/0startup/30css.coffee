@@ -21,3 +21,9 @@ css
   webkitUserSelect: 'none'
   webkitTouchCallout: 'none'
   cursor: 'default'
+@theme =
+  color: '#143153'
+css.add 'h1.main',
+  fontSize: CSSC.em 3.5
+  paddingBottom: CSSC.em 0.6
+  borderBottom: "#{CSSC.px 1} solid #{theme.color}"

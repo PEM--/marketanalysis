@@ -11,4 +11,9 @@ Template.layout.created = ->
   RwdSimpleMenu.get (menu) ->
     FView.log.info 'Menu created'
   ,
-    underlineBgColor: '#143153'
+    underlineBgColor: theme.color
+
+Template.layout.events
+  'click button#disconnect': (e,t) ->
+    Meteor.logout()
+    Router.go '/'
