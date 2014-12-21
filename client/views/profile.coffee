@@ -1,4 +1,8 @@
+profile = Meteor.settings.public.testProfile
 Template.profile.helpers
-  testProfile: -> Meteor.settings.public.testProfile
-  phoneLink: -> "tel:#{Meteor.settings.public.testProfile.phoneNumber}"
-  emailLink: -> "mailto:#{Meteor.settings.public.testProfile.email}"
+  testProfile: -> profile
+  dateOfBirth: ->
+    m = moment profile.dateOfBirth, 'YYYY-MM-DD', 'fr'
+    m.format 'DD/MM/YYYY'
+  phoneLink: -> "tel:#{profile.phoneNumber}"
+  emailLink: -> "mailto:#{profile.email}"
