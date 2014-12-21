@@ -1,3 +1,5 @@
+@theme =
+  color: '#143153'
 @css = new CSSC
 css
 .add '@font-face',
@@ -21,9 +23,13 @@ css
   webkitUserSelect: 'none'
   webkitTouchCallout: 'none'
   cursor: 'default'
-@theme =
-  color: '#143153'
-css.add 'h1.main',
+.add '.selectable',
+  userSelect: 'all'
+  msUserSelect: 'all'
+  mozUserSelect: 'all'
+  webkitUserSelect: 'all'
+  webkitTouchCallout: 'default'
+.add 'h1.main',
   fontSize: CSSC.em 3.5
   paddingBottom: CSSC.em 0.6
   borderBottom: "#{CSSC.px 1} solid #{theme.color}"

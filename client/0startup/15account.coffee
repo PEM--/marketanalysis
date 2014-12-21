@@ -41,7 +41,7 @@ Tracker.autorun ->
       menu.removeRoute 'company'
       menu.removeRoute 'signout'
     else
-      menu.removeRoute 'signin'
       menu.addRoute 'profile',ic: 'fa-user', lbl: ' Profile'
       menu.addRoute 'company', ic: 'fa-building', lbl: ' Company'
       menu.addRoute 'signout', ic: 'fa-sign-out', lbl: ' Sign out'
+      menu.removeRoute 'signin'

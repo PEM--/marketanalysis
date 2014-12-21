@@ -1,25 +1,33 @@
 +StateModifier align='[.5,.5]' origin='[.5,.5]'
-  +Surface size='[undefined, undefined]'
-    .text-center
-      h1 Profile de test
-    .container-fluid
-      .row
-        .col-xs-12
-          p.text-center
-            img.img-circle(src=testProfile.avatar128, alt='profile')
-      .row
-        .col-xs-6: p.text-right Prénom
-        .col-xs-6: p= testProfile.firstName
-      .row
-        .col-xs-6: p.text-right Nom
-        .col-xs-6: p= testProfile.lastName
-      .row
-        .col-xs-6: p.text-right Date de naissance
-        .col-xs-6: p= testProfile.dateOfBirth
-      .row
-        .col-xs-6: p.text-right Adresse
-        .col-xs-6
-          p= testProfile.streetAdress
-          p {{testProfile.zipCode}} - {{testProfile.city}}
-          p= testProfile.country
+  +Scrollview
+    +Surface size='[undefined, true]'
+      .text-center
+        h1 Profile de test
+      .container-fluid
+        .row
+          .col-xs-12
+            p.text-center
+              img.img-circle.img-thumbnail(src=testProfile.avatar128, alt='profile')
+        .row
+          .col-xs-6: p.text-right Prénom
+          .col-xs-6.selectable: p= testProfile.firstName
+        .row
+          .col-xs-6: p.text-right Nom
+          .col-xs-6.selectable: p= testProfile.lastName
+        .row
+          .col-xs-6: p.text-right Date de naissance
+          .col-xs-6.selectable: p= testProfile.dateOfBirth
+        .row
+          .col-xs-6: p.text-right Adresse
+          .col-xs-6.selectable
+            p
+              {{testProfile.streetAdress}} <br>
+              {{testProfile.zipCode}} - {{testProfile.city}} <br>
+              {{testProfile.country}}
+        .row
+          .col-xs-6: p.text-right: i.fa.fa-phone
+          .col-xs-6.selectable: p= testProfile.phoneNumber
+        .row
+          .col-xs-6: p.text-right: i.fa.fa-envelope
+          .col-xs-6.selectable: p= testProfile.email
         
