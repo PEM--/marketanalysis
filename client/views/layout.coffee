@@ -20,4 +20,5 @@ Template.layout.created = ->
 Template.layout.events
   'click button#disconnect': (e,t) ->
     Meteor.logout()
+    RwdSimpleMenu.get (menu) -> menu.setRoute '/'
     Router.go '/'
