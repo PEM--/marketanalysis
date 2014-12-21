@@ -13,7 +13,6 @@ pierreeric:cssc-colors
 pierreeric:cssc-normalize
 pierreeric:cssc-famous
 mquandalle:jade
-raix:famono
 iron:router
 meteorhacks:npm
 gadicohen:reactive-window
@@ -28,3 +27,6 @@ gadicohen:famous-views
 audit-argument-checks
 browser-policy
 pierreeric:fview-bksurfaceimage
+momentjs:moment
+rzymek:moment-locale-fr
+mjn:famous

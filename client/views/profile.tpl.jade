@@ -6,8 +6,7 @@
       .container-fluid
         .row
           .col-xs-12
-            p.text-center
-              img.img-circle.img-thumbnail(src=testProfile.avatar128, alt='profile')
+            p.text-center: img.img-circle.img-thumbnail(src=testProfile.avatar128, alt='profile')
         .row
           .col-xs-6: p.text-right Prénom
           .col-xs-6.selectable: p= testProfile.firstName
@@ -21,13 +20,13 @@
           .col-xs-6: p.text-right Adresse
           .col-xs-6.selectable
             p
-              {{testProfile.streetAdress}} <br>
-              {{testProfile.zipCode}} - {{testProfile.city}} <br>
-              {{testProfile.country}}
+              | {{testProfile.streetAdress}} <br>
+              | {{testProfile.zipCode}} - {{testProfile.city}} <br>
+              | {{testProfile.country}}
         .row
           .col-xs-6: p.text-right: i.fa.fa-phone
-          .col-xs-6.selectable: p= testProfile.phoneNumber
+          .col-xs-6.selectable: p: a(href=phoneLink)= testProfile.phoneNumber
         .row
           .col-xs-6: p.text-right: i.fa.fa-envelope
-          .col-xs-6.selectable: p= testProfile.email
+          .col-xs-6.selectable: p: a(href=emailLink)= testProfile.email
         
