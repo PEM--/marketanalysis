@@ -15,6 +15,7 @@ pierreeric:cssc-famous
 mquandalle:jade
 iron:router
 meteorhacks:npm
+npm-container
 gadicohen:reactive-window
 pierreeric:fview-rwdsimplemenu
 accounts-password
@@ -29,4 +30,6 @@ browser-policy
 pierreeric:fview-bksurfaceimage
 momentjs:moment
 rzymek:moment-locale-fr
+http
+service-configuration
 mjn:famous

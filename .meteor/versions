@@ -63,6 +63,7 @@ mrt:moment@2.6.0
 nemo64:bootstrap@3.3.0_1
 nemo64:bootstrap-data@3.3.0_1
 npm-bcrypt@0.7.7
+npm-container@1.0.0
 observe-sequence@1.0.4
 ordered-dict@1.0.2
 pierreeric:cssc@1.0.4
