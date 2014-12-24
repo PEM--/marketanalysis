@@ -19,6 +19,12 @@ Template.layout.created = ->
 
 Template.layout.events
   'click button#disconnect': (e,t) ->
+    e.preventDefault()
     Meteor.logout()
     RwdSimpleMenu.get (menu) -> menu.setRoute '/'
     Router.go '/'
+  'click button#linkedinconnect': (e, t) ->
+    e.preventDefault()
+    Meteor.call 'isLinkedinConnected', (err, res) ->
+      console.log 'Session.set','isLinkedinConnected', res
+      Session.set 'isLinkedinConnected', res

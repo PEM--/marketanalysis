@@ -43,6 +43,7 @@ iron:url@1.0.6
 jag:pince@0.0.5
 jquery@1.0.2
 json@1.0.2
+khamoud:linkedin-api@1.0.0
 launch-screen@1.0.1
 less@1.0.12
 livedata@1.0.12
@@ -57,11 +58,11 @@ minimongo@1.0.6
 mjn:famous@0.3.4
 mobile-status-bar@1.0.2
 momentjs:moment@2.8.4
-mongo@1.0.10
+mongo@1.0.11
 mquandalle:jade@0.4.1
 mrt:moment@2.6.0
-nemo64:bootstrap@3.3.0_1
-nemo64:bootstrap-data@3.3.0_1
+nemo64:bootstrap@3.3.1_1
+nemo64:bootstrap-data@3.3.1_1
 npm-bcrypt@0.7.7
 npm-container@1.0.0
 observe-sequence@1.0.4

@@ -6,7 +6,7 @@ Router.plugin 'loading',  loadingTemplate: 'loading'
 Router.route '/', name: 'home'
 Router.route '/profile', -> needSigninPage @, 'profile'
 Router.route '/company', -> needSigninPage @, 'company'
-Router.route '/signin',
+Router.route '/signin'
 Router.route '/signout', -> needSigninPage @, 'signout'
 Router.route '/loading'
 

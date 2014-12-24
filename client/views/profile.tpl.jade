@@ -1,11 +1,9 @@
 +StateModifier align='[.5,.5]' origin='[.5,.5]'
   +Scrollview
     +Surface size='[undefined, true]'
-      .text-center
-        h1 Profile de test
       .container-fluid
-        .row
-          .col-xs-12
+        .row: .text-center: h1 Profile de test
+        .row: .col-xs-12
             p.text-center: img.img-circle.img-thumbnail(src=testProfile.avatar128, alt='profile')
         .row
           .col-xs-6: p.text-right Prénom
@@ -29,4 +27,7 @@
         .row
           .col-xs-6: p.text-right: i.fa.fa-envelope
           .col-xs-6.selectable: p: a(href=emailLink)= testProfile.email
-        
+        +if isLinkedinConnected
+          .row: .text-center: p Connecté à LinkedIn
+        +else
+          .row: .text-center: button#linkedinconnect.btn.btn-lg.btn-success LinkedIn connexion

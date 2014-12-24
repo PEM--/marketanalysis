@@ -6,3 +6,4 @@ Template.profile.helpers
     m.format 'DD/MM/YYYY'
   phoneLink: -> "tel:#{profile.phoneNumber}"
   emailLink: -> "mailto:#{profile.email}"
+  isLinkedinConnected: -> Session.get 'isLinkedinConnected'
