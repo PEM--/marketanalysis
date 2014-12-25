@@ -55,30 +55,7 @@ stuff = '<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta http-equiv="content-ty
 # Body
 # isJsEnabled=true&session_key=sachalec67%40gmail.com&session_password=pJJA4Ehpc7me0Vw&authorize=Autoriser&oauth_token=na&appId=&client_id=778ogspdrry0k0&scope=r_fullprofile+r_emailaddress&state=0.871024023508653&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F_oauthlinkedin&scope_id=1059&authorized=true&csrfToken=ajax%3A8482524907832911597&sourceAlias=0_9DsHd_bZgogqUxUum9_VlTBWJMUCeow0cdGxvyKqdV8&client_ts=1419430671632&client_r=%3A472660511%3A474862485%3A902202021&client_output=0&client_n=472660511%3A474862485%3A902202021&client_v=1.0.1
 
-
-
-
-
 $ = Meteor.npmRequire 'cheerio'
-
-$stuff = $ stuff
-$form = $stuff.find 'form'
-
-testProfile =  Meteor.settings.public.testProfile
-post_url = "https://www.linkedin.com/#{$form.attr 'action'}"
-console.log 'post_url', post_url
-$inputs = $form.find 'input'
-postbody = $inputs.map (idx, elem) ->
-  $elem = $ elem
-  switch $elem.attr 'name'
-    when 'session_key'
-      return "session_key=#{encodeURI testProfile.email}"
-    when 'session_password'
-      return "session_password=#{encodeURI testProfile.password}"
-    else
-      return "#{$elem.attr 'name'}=#{encodeURI $elem.attr 'value'}"
-.get().join '&'
-console.log 'body', postbody
 
 authorization_code = null
 state = null
@@ -101,10 +78,51 @@ Router.route '/_oauthlinkedin/', ->
 Meteor.methods
   'isLinkedinConnected': ->
     console.log 'PEM: Step 1'
-    HTTP.call 'GET', (encodeURI url), (error, response) ->
+    HTTP.get (encodeURI url), (error, response) ->
       if error
         console.log 'PEM: Error', error
-      console.log 'PEM: Step 2', response
+      console.log 'PEM: Step 2'
+      $resbody = $ response.content
+      $form = $resbody.find 'form'
+      testProfile =  Meteor.settings.public.testProfile
+      post_url = "https://www.linkedin.com/#{$form.attr 'action'}"
+      console.log 'post_url', post_url
+      $inputs = $form.find 'input'
+      postbody = $inputs.map (idx, elem) ->
+        $elem = $ elem
+        name = $elem.attr 'name'
+        switch name
+          when 'isJsEnabled' then return 'isJsEnabled=true'
+          when 'session_key'
+            return "#{name}=#{encodeURIComponent testProfile.email}"
+          when 'session_password'
+            return "#{name}=#{encodeURIComponent testProfile.password}"
+          else
+            return "#{name}=#{encodeURIComponent $elem.attr 'value'}"
+      .get().join '&'
+      console.log 'postbody', postbody.length, postbody
+      HTTP.post post_url, {
+        headers:
+          'Connection': 'keep-alive'
+          'Pragma': 'no-cache'
+          'Cache-Control': 'no-cache'
+          'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+          'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'
+          'Content-Type': 'application/x-www-form-urlencoded'
+          'Referer': url
+          'Accept-Encoding': 'gzip, deflate'
+          'Accept-Language': 'fr-FR,fr;q=0.8,en-US;q=0.6,en;q=0.4'
+        content: postbody
+      }, (error, response) ->
+        if error
+          console.log 'PEM: Error', error
+        console.log 'PEM: Step 2bis', response
+        debugger
+
+
+
+
+
       #console.log 'Response', response
     #console.log 'isLinkedinConnected', access_token
     return true
