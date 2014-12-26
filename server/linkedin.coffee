@@ -55,6 +55,38 @@ stuff = '<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta http-equiv="content-ty
 # Body
 # isJsEnabled=true&session_key=sachalec67%40gmail.com&session_password=pJJA4Ehpc7me0Vw&authorize=Autoriser&oauth_token=na&appId=&client_id=778ogspdrry0k0&scope=r_fullprofile+r_emailaddress&state=0.871024023508653&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F_oauthlinkedin&scope_id=1059&authorized=true&csrfToken=ajax%3A8482524907832911597&sourceAlias=0_9DsHd_bZgogqUxUum9_VlTBWJMUCeow0cdGxvyKqdV8&client_ts=1419430671632&client_r=%3A472660511%3A474862485%3A902202021&client_output=0&client_n=472660511%3A474862485%3A902202021&client_v=1.0.1
 
+
+
+cookie =  Meteor.npmRequire 'cookie'
+
+#rawcookies = 'IN_HASH=state%3D8fd20dab94fd55fb459807b1c9f3ea1f; bcookie="v=2&49e5944b-8510-4c8b-8ef7-1f881152caa7"; __qca=P0-1573792554-1384261375226; bscookie="v=1&2013111213031023156bbe-83d4-4cc7-8e67-dc517d71fec1AQH8MFo6gLf9pLF1r2Qvd9Lt9bYpgmgT"; visit="v=1&M"; X-LI-IDC=C4; X-LI-DDC=C1; lihc_auth_fr=1397597837; li_loc=na; li_trk=NoPageKey; L1l=30d3e154; L1c=4b8b4c00; L1e=6ac7eec3; sdsc=1%3A1SZM1shxDNbLt36wZwCgPgvN58iw%3D; _leo_profile=""; X-ATS-Node-0=0; X-ATS-Node-1=0; X-ATS-Node-2=0; lihc_auth_en=1419335108; lihc_auth_str=3wXD470PVP1JPV06Gog93K%2FI9Jm91mQuXJasdZ%2FzaZwdwmG6Vf6t7%2BKpq1U3xYDr0e2jH9tSupNb%2FeT%2FMjJIgadQ7dfTmtm6nGC2m0YHoYZNdT0ytbK4zAkPxZOM6M1y3cuHhs0HSplBm4ftUAWVy26ByASQ1IOBCG2GCIJcoXgvD%2Fzyh5KcLxd5dMSMQIYmVY9jIII%2F%2FBi%2FRaVyDpE%2Fn4uph6TMjwTlQTjTxJrC%2Bfj02%2B8iuMndauF0oP%2FMGGNHmHJwMyCYlMdWt2QIBSh%2FhZqTBmCCgqBim2NB3picl4JPzKbwIqXkAhSl24jvLUzqVXN5X3EOfok4s2WX%2BRCDRfnEmiyF%2BibuxpROkbb4%2Fpir%2BQwupYD8UJeuy86HoITTE%2FXtPPwONvo%3D; __utma=23068709.1986074524.1419431977.1419431977.1419431977.1; __utmc=23068709; __utmz=23068709.1419431977.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __utmv=23068709.guest; lidc="b=VB66:g=124:u=84:i=1419432003:t=1419446594:s=AQGoV3xm2bkGZcsnRpyZLJR7Ia3w1srK"; _lipt=0_fIRVA-OD2XEx1R0GwUjagr5bP4OFh91G3SS-eP_pK0vGFopHWuGaNGN5Sj3MH3LGqQ50813qn3-_dMk9j4amC5-rMEh9EpdJmKvGW8UhrJ1OkOFWgNXDlN9BPWw2GShvKrb6vAktfxe0C-B7o5gP_5iq-gv6lxSxRWQ_8vNlmwVKYUGOi7u7kC9On-11eT_m46j9nOk4y3x6279inUad-uCuvovoNUhSg45uxLVJNGbQYWhZ_omM0wu8nqDpMtxld-gpMSgKQN3taFpSN-DOReuvyevHaZSMXQATrJ_HO_C; lang="v=2&lang=fr-fr&c="; li_at=AQECAQFzcCYF4C_ZAAABSny9S58AAAFKfbwD_01YIcqZ-Dk_ugcScJz9zv20PHdgZlr6sYhbOBRIREq19dYH7sDTmmBNiR0Jp5IkiJ5wDiUvYtmIm0y17WNdni56Mwxb0DDjLFr-5Bbmno8VcAlqEOQ; sl="v=1&vWQQ9"; JSESSIONID="ajax:8482524907832911597"'
+#dictcookies = cookie.parse rawcookies
+#console.log 'dictcookies', dictcookies
+#console.log 'serielized', cookie.serialize dictcookies
+
+
+headersetactions = [
+  '"_lipt=deleteMe; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/"'
+  '"leo_auth_token="GST:9oO9Uvpj67WGivCW7POznvpqmNpXltSG7Ga7nqH3c2Wa8vCaPk_7K0:1419595915:a1452a079583e3b56246009ccb5c68f06a2c2574"; Version=1; Max-Age=1799; Expires=Fri, 26-Dec-2014 12:41:54 GMT; Path=/"'
+  '"sl="delete me"; Version=1; Max-Age=0; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/"'
+  '"sl="delete me"; Version=1; Domain=.www.linkedin.com; Max-Age=0; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/"'
+  '"s_leo_auth_token="delete me"; Version=1; Max-Age=0; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/"'
+  '"JSESSIONID="ajax:7157219241963920479"; Version=1; Domain=.www.linkedin.com; Path=/"'
+  '"visit="v=1&G"; Version=1; Max-Age=63072000; Expires=Sun, 25-Dec-2016 12:11:55 GMT; Path=/"'
+  '"lang="v=2&lang=en-us"; Version=1; Domain=linkedin.com; Path=/"'
+  '"bcookie="v=2&8635cfab-1334-40a5-831d-32210a69352a"; domain=.linkedin.com; Path=/; Expires=Sun, 25-Dec-2016 23:49:27 GMT"'
+  '"bscookie="v=1&20141226121155e2b5da06-845f-437a-81d7-97a394134fe6AQG9iy8YhJ0iU97R5IfMGg1iyry8bjCz"; domain=.www.linkedin.com; Path=/; Secure; Expires=Sun, 25-Dec-2016 23:49:27 GMT; HttpOnly"'
+  '"lidc="b=VB28:g=138:u=1:i=1419595915:t=1419682315:s=933191436"; Expires=Sat, 27 Dec 2014 12:11:55 GMT; domain=.linkedin.com; Path=/"'
+]
+
+
+###
+for header in headersetactions
+  setheader = cookie.parse header
+  console.log 'header', cookie.serialize 'titi', 'toto', setheader
+###
+
+request = (Meteor.npmRequire 'request').defaults jar: true
 $ = Meteor.npmRequire 'cheerio'
 
 authorization_code = null
@@ -78,10 +110,46 @@ Router.route '/_oauthlinkedin/', ->
 Meteor.methods
   'isLinkedinConnected': ->
     console.log 'PEM: Step 1'
+    request.get
+      url: encodeURI url
+    , (e, r, body) ->
+      console.log 'PEM: Error', e if e
+      console.log 'PEM: Step 2'
+      $resbody = $ body
+      $form = $resbody.find 'form'
+      testProfile =  Meteor.settings.public.testProfile
+      post_url = "https://www.linkedin.com/#{$form.attr 'action'}"
+      console.log 'post_url', post_url
+      $inputs = $form.find 'input'
+      formData = {}
+      postbody = $inputs.each (idx, elem) ->
+        $elem = $ elem
+        name = $elem.attr 'name'
+        switch name
+          when 'isJsEnabled' then formData['isJsEnabled'] = true
+          when 'session_key'
+            formData[name] = encodeURIComponent testProfile.email
+          when 'session_password'
+            formData[name] = encodeURIComponent testProfile.password
+          else
+            formData[name] = encodeURIComponent $elem.attr 'value'
+      debugger
+      request.post
+        url: post_url
+        form: formData
+        followAllRedirects: true
+      , (e, r, body) ->
+        console.log 'PEM: Error', e if e
+        console.log 'PEM: Step 3'
+        debugger
+
+  '_isLinkedinConnected': ->
+    console.log 'PEM: Step 1'
     HTTP.get (encodeURI url), (error, response) ->
       if error
         console.log 'PEM: Error', error
       console.log 'PEM: Step 2'
+      debugger
       $resbody = $ response.content
       $form = $resbody.find 'form'
       testProfile =  Meteor.settings.public.testProfile
@@ -110,14 +178,13 @@ Meteor.methods
           'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'
           'Content-Type': 'application/x-www-form-urlencoded'
           'Referer': url
-          'Accept-Encoding': 'gzip, deflate'
+          #'Accept-Encoding': 'gzip, deflate'
           'Accept-Language': 'fr-FR,fr;q=0.8,en-US;q=0.6,en;q=0.4'
         content: postbody
       }, (error, response) ->
         if error
           console.log 'PEM: Error', error
         console.log 'PEM: Step 2bis', response
-        debugger
 
 
 

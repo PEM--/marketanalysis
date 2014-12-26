@@ -1,5 +1,8 @@
 {
   "node-linkedin": "0.3.4",
   "express": "4.10.6",
-  "cheerio": "0.18.0"
+  "cheerio": "0.18.0",
+  "cookie": "0.1.2",
+  "request": "2.51.0",
+  "tough-cookie": "0.12.1"
 }
