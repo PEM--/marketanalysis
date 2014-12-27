@@ -30,7 +30,7 @@ browser-policy
 pierreeric:fview-bksurfaceimage
 momentjs:moment
 rzymek:moment-locale-fr
-http
 service-configuration
-mjn:famous
 khamoud:linkedin-api
+mjn:famous
+dandv:http-more

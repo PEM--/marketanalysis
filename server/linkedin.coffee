@@ -86,7 +86,12 @@ for header in headersetactions
   console.log 'header', cookie.serialize 'titi', 'toto', setheader
 ###
 
-request = (Meteor.npmRequire 'request').defaults jar: true
+request = (Meteor.npmRequire 'request').defaults
+  jar: true
+  tunnel: true
+  proxy: '127.0.0.1:8080'
+  http_proxy: 'http://127.0.0.1:8080'
+  https_proxy: 'https://127.0.0.1:8080'
 $ = Meteor.npmRequire 'cheerio'
 
 authorization_code = null
@@ -110,11 +115,12 @@ Router.route '/_oauthlinkedin/', ->
 Meteor.methods
   'isLinkedinConnected': ->
     console.log 'PEM: Step 1'
-    request.get
-      url: encodeURI url
-    , (e, r, body) ->
+    HTTP.get (encodeURI url),
+      proxy: 'http://127.0.0.1'
+      jar: true
+    , (e, r) ->
       console.log 'PEM: Error', e if e
-      console.log 'PEM: Step 2'
+      console.log 'PEM: Step 2', r
       $resbody = $ body
       $form = $resbody.find 'form'
       testProfile =  Meteor.settings.public.testProfile
@@ -134,8 +140,9 @@ Meteor.methods
           else
             formData[name] = encodeURIComponent $elem.attr 'value'
       debugger
-      request.post
-        url: post_url
+      HTTP.post post_url,
+        proxy: 'http://127.0.0.1'
+        jar: true
         form: formData
         followAllRedirects: true
       , (e, r, body) ->
