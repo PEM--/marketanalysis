@@ -1,11 +1,6 @@
-console.log 'Meteor started'
-
 state = Random.id()
 scope = ['r_fullprofile', 'r_emailaddress']
 redirect_uri = 'http://localhost:3000/_oauthlinkedin'
-#  Meteor.settings.linkedin.APIkey,
-#  Meteor.settings.linkedin.secretKey,
-#  'https://127.0.0.1:3000/_oauthlinkedin'
 
 url = 'https://www.linkedin.com/uas/oauth2/authorization?response_type=code' + \
   "&client_id=#{Meteor.settings.linkedin.APIkey}" + \
@@ -24,29 +19,23 @@ Router.route '/_oauthlinkedin/', ->
   req = @request
   res = @response
   query = @params.query
-  console.log 'PEM: Step 4: _oauthlinkedin, query:', query
   authorization_code = query.code
   state = query.state
   res.end "Authorization code: #{authorization_code}\n\
     State: #{state}"
 , where: 'server'
 
-
 Meteor.methods
   'isLinkedinConnected': ->
-    console.log 'PEM: Step 1'
     HTTP.get (encodeURI url),
       proxy: 'http://127.0.0.1:8080'
       strictSSL: false
       jar: true
     , (e, r) ->
-      console.log 'PEM: Error', e if e
-      console.log 'PEM: Step 2', r
       $resbody = $ r.content
       $form = $resbody.find 'form'
       testProfile =  Meteor.settings.public.testProfile
       post_url = "https://www.linkedin.com/#{$form.attr 'action'}"
-      console.log 'post_url', post_url
       $inputs = $form.find 'input'
       formData = {}
       postbody = $inputs.each (idx, elem) ->
@@ -60,8 +49,6 @@ Meteor.methods
             formData[name] = testProfile.password
           else
             formData[name] = $elem.attr 'value'
-      debugger
-
       headers =
         Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
         'Proxy-Connection': 'keep-alive'
@@ -79,8 +66,5 @@ Meteor.methods
         form: formData
         followAllRedirects: true
       , (e, r) ->
-        console.log 'PEM: Error', e if e
-        console.log 'PEM: Step 3', r
-        debugger
-
+        # Nothing should be there as the former call is redirected.
     return true
