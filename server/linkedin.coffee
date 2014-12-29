@@ -8,7 +8,7 @@ url = 'https://www.linkedin.com/uas/oauth2/authorization?response_type=code' + \
   "&state=#{state}" + \
   "&redirect_uri=#{redirect_uri}"
 
-@access_token = 'AQXUnhb2DZzuZdWDScvkJUCYCorhbxeHqOz-1m6lXROGvgD7aw2o-QiwCq5AHXK75sLF_Wwy4d9S2L71p_81pEUwRsqj1qYMCFMiJ0dj5odjf1uVtVGjtKtQ1gzOrdz0UkORcKB33cwVHEA7Lxq8e38BTyz8vj3xCp_2ksJwq0jameye1u0'
+@access_token = null
 
 $ = Meteor.npmRequire 'cheerio'
 
@@ -50,13 +50,15 @@ Meteor.methods
           else
             formData[name] = $elem.attr 'value'
       headers =
-        Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+        Accept: 'text/html,application/xhtml+xml,application/xml;\
+          q=0.9,*/*;q=0.8'
         'Proxy-Connection': 'keep-alive'
         'Accept-Language': 'fr-fr'
         'Accept-Encoding': 'gzip, deflate'
         Origin: 'https://www.linkedin.com'
         Connection: 'keep-alive'
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/600.2.5 (KHTML, like Gecko) Version/8.0.2 Safari/600.2.5'
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) \
+          AppleWebKit/600.2.5 (KHTML, like Gecko) Version/8.0.2 Safari/600.2.5'
         Referer: (encodeURI url)
       HTTP.post post_url,
         headers: headers
