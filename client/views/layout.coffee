@@ -28,3 +28,7 @@ Template.layout.events
     Meteor.call 'isLinkedinConnected', (err, res) ->
       console.log 'Session.set','isLinkedinConnected', res
       Session.set 'isLinkedinConnected', res
+  'click button#getlinkedindata': (e, t) ->
+    e.preventDefault()
+    Meteor.call 'getLinkedinData', 'company', (err, res) ->
+      console.log 'getLinkedinData', res

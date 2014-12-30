@@ -1,4 +1,4 @@
-state = Random.id()
+@state = Random.id()
 scope = ['r_fullprofile', 'r_emailaddress']
 redirect_uri = 'http://localhost:3000/_oauthlinkedin'
 
@@ -8,20 +8,18 @@ url = 'https://www.linkedin.com/uas/oauth2/authorization?response_type=code' + \
   "&state=#{state}" + \
   "&redirect_uri=#{redirect_uri}"
 
-@access_token = null
-
 $ = Meteor.npmRequire 'cheerio'
 
-authorization_code = null
-state = null
+@access_token = null
 
 Router.route '/_oauthlinkedin/', ->
   req = @request
   res = @response
   query = @params.query
-  authorization_code = query.code
+  access_token = query.code
   state = query.state
-  res.end "Authorization code: #{authorization_code}\n\
+  console.log 'Params received from LinkedIn', query
+  res.end "Authorization code: #{access_token}\n\
     State: #{state}"
 , where: 'server'
 
@@ -70,3 +68,6 @@ Meteor.methods
       , (e, r) ->
         # Nothing should be there as the former call is redirected.
     return true
+  'getLinkedinData': (params) ->
+    check params, String
+    console.log 'getLinkedinData', @, params, access_token

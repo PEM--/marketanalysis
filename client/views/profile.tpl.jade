@@ -29,5 +29,6 @@
           .col-xs-6.selectable: p: a(href=emailLink)= testProfile.email
         +if isLinkedinConnected
           .row: .text-center: p Connecté à LinkedIn
+          .row: .text-center: button#getlinkedindata.btn.btn-lg.btn-success Get LinkedIn data
         +else
           .row: .text-center: button#linkedinconnect.btn.btn-lg.btn-success LinkedIn connexion
