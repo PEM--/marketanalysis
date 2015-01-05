@@ -14,7 +14,6 @@ Router.route '/_oauthlinkedin/', ->
   req = @request
   res = @response
   query = @params.query
-  console.log 'Params received from LinkedIn', query
   res.end "Authorization code: #{query.code}\nState: #{query.state}"
   linkedInState = LinkedInState.findOne()
   linkedInState.authorization_code = query.code
@@ -24,7 +23,7 @@ Router.route '/_oauthlinkedin/', ->
 , where: 'server'
 
 Meteor.methods
-  'linkedinauthorization': ->
+  linkedinauthorization: ->
     linkedInState = LinkedInState.findOne()
     linkedInState.authorization_code = 'pending'
     linkedInState.modifiedAt = new Date
@@ -70,17 +69,50 @@ Meteor.methods
         form: formData
         followAllRedirects: true
       , (e, r) ->
-        # Nothing should be there as the former call is redirected.
+        console.log 'Error', e if e
     return true
-  'getLinkedinData': (params) ->
+  linkedinaccess: ->
+    linkedInState = LinkedInState.findOne()
+    linkedInState.access_token = 'pending'
+    delete linkedInState.expiration if linkedInState.expiration?
+    linkedInState.modifiedAt = new Date
+    LinkedInState.update {_id: linkedInState._id}, linkedInState
+    url = 'https://www.linkedin.com/uas/oauth2/accessToken?' +
+      'grant_type=authorization_code' +
+      "&code=#{linkedInState.authorization_code}" +
+      "&redirect_uri=#{redirect_uri}" +
+      "&client_id=#{Meteor.settings.linkedin.APIkey}" +
+      "&client_secret=#{Meteor.settings.linkedin.secretKey}"
+    HTTP.post (encodeURI url),
+      proxy: 'http://127.0.0.1:8080'
+      strictSSL: false
+    , (e, r) ->
+      console.log 'Error', e if e
+      linkedInState = LinkedInState.findOne()
+      linkedInState.access_token = r.data.access_token
+      linkedInState.modifiedAt = new Date
+      expiration = moment new Date
+      expiration.add Number(r.data.expires_in), 's'
+      linkedInState.expiration = expiration.toDate()
+      LinkedInState.update {_id: linkedInState._id}, linkedInState
+    return true
+  linkedindata: (params) ->
     check params, String
+    linkedInState = LinkedInState.findOne()
     headers =
-      #Authorization: "Bearer #{access_token}"
+      Authorization: "Bearer #{linkedInState.access_token}"
       Connection: 'keep-alive'
-    HTTP.get 'https://api.linkedin.com//v1/people/~',
+      'x-li-format': 'json'
+    #url = 'https://api.linkedin.com//v1/people/~'
+    url = 'https://api.linkedin.com/v1/company-search:' +
+      '(facets,companies:(id,name,universal-name,website-url))?' +
+      'facet=location,fr:0&' +
+      'keywords=&count=3&start=0'
+    HTTP.get url,
       headers: headers
       proxy: 'http://127.0.0.1:8080'
       strictSSL: false
     , (e, r) ->
       console.log 'Error', e if e
       console.log 'Response', r
+    return true

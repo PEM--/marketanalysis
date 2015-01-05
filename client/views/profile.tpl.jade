@@ -27,22 +27,12 @@
         .row
           .col-xs-6: p.text-right: i.fa.fa-envelope
           .col-xs-6.selectable: p: a(href=emailLink)= testProfile.email
-        if isLinkedinStateAuthorizationRequired
-          .row: .text-center: button#linkedinauthorization.btn.btn-lg.btn-success LinkedIn authorization
-        else
-          if isLinkedinStateAuthorizationPending
-            .row: .text-center: p En attente authorization
-          else
-            if isLinkedinStateAccessTokenRequired
-              .row: .text-center: p Autorisé sur LinkedIn
-              .row: .text-center: button#linkedinaccess.btn.btn-lg.btn-success Get access token
-            else
-              if isLinkedinStateAccessTokenPending
-                .row: .text-center: p En attente access token
-              else
-                if isLinkedinStateConnected
-                  .row: .text-center: p Connecté à LinkedIn
-                  .row: .text-center: button#linkedindata.btn.btn-lg.btn-success Get data
-                else
-                  .row: .text-center: p Unkown state
-          
+        .row(style=isLinkedinStateAuthorizationRequired): .text-center: button#linkedinauthorization.btn.btn-lg.btn-success LinkedIn authorization
+        .row(style=isLinkedinStateAuthorizationPending): .text-center: p En attente authorization
+        div(style=isLinkedinStateAccessTokenRequired)
+          .row: .text-center: p Autorisé sur LinkedIn
+          .row: .text-center: button#linkedinaccess.btn.btn-lg.btn-success Get access token
+        .row(style=isLinkedinStateAccessTokenPending): .text-center: p En attente access token
+        div(style=isLinkedinStateConnected)
+          .row: .text-center: p Connecté à LinkedIn
+          .row: .text-center: button#linkedindata.btn.btn-lg.btn-success Get data

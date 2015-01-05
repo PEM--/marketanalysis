@@ -16,7 +16,7 @@ Template.layout.created = ->
     underlineBgColor: theme.color
 
 Template.layout.events
-  'click button#disconnect': (e,t) ->
+  'click button#disconnect': (e, t) ->
     e.preventDefault()
     Meteor.logout()
     RwdSimpleMenu.get (menu) -> menu.setRoute '/'
@@ -25,7 +25,11 @@ Template.layout.events
     e.preventDefault()
     Meteor.call 'linkedinauthorization', (err, res) ->
       console.log 'linkedinauthorization', res
-  'click button#getlinkedindata': (e, t) ->
+  'click button#linkedinaccess': (e, t) ->
     e.preventDefault()
-    Meteor.call 'getLinkedinData', 'company', (err, res) ->
-      console.log 'getLinkedinData', res
+    Meteor.call 'linkedinaccess', (err, res) ->
+      console.log 'linkedinaccess', res
+  'click button#linkedindata': (e, t) ->
+    e.preventDefault()
+    Meteor.call 'linkedindata', 'company', (err, res) ->
+      console.log 'linkedindata', res
