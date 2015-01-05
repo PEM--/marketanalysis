@@ -6,9 +6,7 @@ Template.layout.helpers
     Tracker.autorun ->
       curWidth = rwindow.innerWidth() ? 960
       "[#{Math.min 960, curWidth}, #{rwindow.innerHeight()}]"
-  testProfile: ->
-    console.log Meteor.settings.public.testProfile
-    Meteor.settings.public.testProfile
+  testProfile: -> Meteor.settings.public.testProfile
   test: -> 'Test'
 
 Template.layout.created = ->
@@ -23,11 +21,10 @@ Template.layout.events
     Meteor.logout()
     RwdSimpleMenu.get (menu) -> menu.setRoute '/'
     Router.go '/'
-  'click button#linkedinconnect': (e, t) ->
+  'click button#linkedinauthorization': (e, t) ->
     e.preventDefault()
-    Meteor.call 'isLinkedinConnected', (err, res) ->
-      console.log 'Session.set','isLinkedinConnected', res
-      Session.set 'isLinkedinConnected', res
+    Meteor.call 'linkedinauthorization', (err, res) ->
+      console.log 'linkedinauthorization', res
   'click button#getlinkedindata': (e, t) ->
     e.preventDefault()
     Meteor.call 'getLinkedinData', 'company', (err, res) ->
