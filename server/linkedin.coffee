@@ -105,14 +105,30 @@ Meteor.methods
       'x-li-format': 'json'
     #url = 'https://api.linkedin.com//v1/people/~'
     url = 'https://api.linkedin.com/v1/company-search:' +
-      '(facets,companies:(id,name,universal-name,website-url))?' +
+      '(facets,companies:(' +
+        'id,name,universal-name,website-url,industries,' +
+        'status,logo-url,blog-rss-url,twitter-id,employee-count-range,' +
+        'specialties,locations,description,stock-exchange,founded-year,' +
+        'end-year,num-followers))?' +
+      # Only the headquarter based in France
+      'hq-only=true&' +
+      # Set facets on location and company size
+      #'facets=location,company-size&'
+      # Only companies in France
       'facet=location,fr:0&' +
-      'keywords=&count=3&start=0'
-    HTTP.get url,
+      # Companies ranging from 1 to 500 employees
+      'facet=company-size,B,C,D,E&' +
+      #'keywords=&' +
+      # Pagination support
+      'start=0&count=3&' +
+      # Sort by company size
+      'sort=company-size'
+    HTTP.get (encodeURI url),
       headers: headers
       proxy: 'http://127.0.0.1:8080'
       strictSSL: false
     , (e, r) ->
       console.log 'Error', e if e
       console.log 'Response', r
+
     return true
