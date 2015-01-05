@@ -99,11 +99,14 @@ Meteor.methods
   linkedindata: (params) ->
     check params, String
     linkedInState = LinkedInState.findOne()
+    if linkedInState.start? or linkedInState.start is undefined
+      start =  0
+    else
+      start = linkedInState.start + linkedInState.count
     headers =
       Authorization: "Bearer #{linkedInState.access_token}"
       Connection: 'keep-alive'
       'x-li-format': 'json'
-    #url = 'https://api.linkedin.com//v1/people/~'
     url = 'https://api.linkedin.com/v1/company-search:' +
       '(facets,companies:(' +
         'id,name,universal-name,website-url,industries,' +
@@ -112,15 +115,12 @@ Meteor.methods
         'end-year,num-followers))?' +
       # Only the headquarter based in France
       'hq-only=true&' +
-      # Set facets on location and company size
-      #'facets=location,company-size&'
       # Only companies in France
       'facet=location,fr:0&' +
       # Companies ranging from 1 to 500 employees
       'facet=company-size,B,C,D,E&' +
-      #'keywords=&' +
       # Pagination support
-      'start=0&count=3&' +
+      "start=#{start}&count=10&" +
       # Sort by company size
       'sort=company-size'
     HTTP.get (encodeURI url),
@@ -130,5 +130,13 @@ Meteor.methods
     , (e, r) ->
       console.log 'Error', e if e
       console.log 'Response', r
+      linkedInState = LinkedInState.findOne()
+      linkedInState.start = r.data.companies._start
+      linkedInState.count = r.data.companies._count
+      linkedInState.modifiedAt = new Date
+      LinkedInState.update {_id: linkedInState._id}, linkedInState
+      for companie in r.data.companies.values
+        console.log r.data.companies.values
+        Companies.insert companie
 
     return true
