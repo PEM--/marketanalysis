@@ -129,14 +129,11 @@ Meteor.methods
       strictSSL: false
     , (e, r) ->
       console.log 'Error', e if e
-      console.log 'Response', r
       linkedInState = LinkedInState.findOne()
       linkedInState.start = r.data.companies._start
       linkedInState.count = r.data.companies._count
       linkedInState.modifiedAt = new Date
       LinkedInState.update {_id: linkedInState._id}, linkedInState
       for companie in r.data.companies.values
-        console.log r.data.companies.values
         Companies.insert companie
-
     return true

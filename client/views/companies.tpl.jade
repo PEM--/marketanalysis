@@ -1,0 +1,21 @@
++StateModifier align='[.5,.5]' origin='[.5,.5]'
+  +Scrollview
+    +Surface size='[undefined, true]'
+      .row
+        .text-center
+          h1 Sociétés
+      .row: .col-xs-12
+        table.table.table-striped.table-condensed.table-hover
+          thead: tr
+            each companyKeys
+              th= name
+          tbody
+            each companyList
+              tr
+                td= name
+                td= employeeCountRange
+                td= industries
+                td.text-middle= location
+                td.text-right= numFollowers
+              
+          

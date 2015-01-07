@@ -27,12 +27,12 @@
         .row
           .col-xs-6: p.text-right: i.fa.fa-envelope
           .col-xs-6.selectable: p: a(href=emailLink)= testProfile.email
-        .row(style=isLinkedinStateAuthorizationRequired): .text-center: button#linkedinauthorization.btn.btn-lg.btn-success LinkedIn authorization
-        .row(style=isLinkedinStateAuthorizationPending): .text-center: p En attente authorization
+        .row(style=isLinkedinStateAuthorizationRequired): .text-center: button#linkedinauthorization.btn.btn-lg.btn-success S'autoriser sur LinkedIn
+        .row(style=isLinkedinStateAuthorizationPending): .text-center: p En attente des autorisations
         div(style=isLinkedinStateAccessTokenRequired)
           .row: .text-center: p Autorisé sur LinkedIn
-          .row: .text-center: button#linkedinaccess.btn.btn-lg.btn-success Get access token
-        .row(style=isLinkedinStateAccessTokenPending): .text-center: p En attente access token
+          .row: .text-center: button#linkedinaccess.btn.btn-lg.btn-success S'identifier sur LinkedIn
+        .row(style=isLinkedinStateAccessTokenPending): .text-center: p En attente d'identification
         div(style=isLinkedinStateConnected)
-          .row: .text-center: p Connecté à LinkedIn
-          .row: .text-center: button#linkedindata.btn.btn-lg.btn-success Get data
+          .row: .text-center: p Identifié sur LinkedIn
+          .row: .text-center: button#linkedindata.btn.btn-lg.btn-success Récupérer des données
