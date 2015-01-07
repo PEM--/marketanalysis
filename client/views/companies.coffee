@@ -1,4 +1,8 @@
 Template.companies.helpers
+  screenSize: ->
+    "[#{Math.min 960, (rwindow.innerWidth() ? 960)}, #{rwindow.innerHeight()}]"
+  tableSize: ->
+    "[#{Math.min 960, (rwindow.innerWidth() ? 960)}, true]"
   companyKeys: [
     { name: 'Nom' }
     { name: 'Taille' }
@@ -7,14 +11,10 @@ Template.companies.helpers
     { name: 'Suiveurs' }
   ]
   companyList: ->
-    data = []
-    for company in Companies.find().fetch()
-      val =
-        name: company.name
-        employeeCountRange: company.employeeCountRange.name
-        industries: company.industries.values?[0].name
-        location: company.locations.values?[0].address.postalCode
-        numFollowers: company.numFollowers
-      console.log val
-      data.push val
-    data
+    {
+      name: company.name
+      employeeCountRange: company.employeeCountRange.name
+      industries: company.industries.values?[0].name
+      location: company.locations.values?[0].address.postalCode
+      numFollowers: company.numFollowers
+    } for company in Companies.find().fetch()
