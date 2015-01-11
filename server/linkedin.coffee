@@ -29,8 +29,8 @@ Meteor.methods
     linkedInState.modifiedAt = new Date
     LinkedInState.update {_id: linkedInState._id}, linkedInState
     HTTP.get (encodeURI url),
-      proxy: 'http://127.0.0.1:8080'
-      strictSSL: false
+      #proxy: 'http://127.0.0.1:8080'
+      #strictSSL: false
       jar: true
     , (e, r) ->
       $resbody = $ r.content
@@ -63,9 +63,9 @@ Meteor.methods
         Referer: (encodeURI url)
       HTTP.post post_url,
         headers: headers
-        proxy: 'http://127.0.0.1:8080'
+        #proxy: 'http://127.0.0.1:8080'
+        #strictSSL: false
         jar: true
-        strictSSL: false
         form: formData
         followAllRedirects: true
       , (e, r) ->
@@ -83,9 +83,9 @@ Meteor.methods
       "&redirect_uri=#{redirect_uri}" +
       "&client_id=#{Meteor.settings.linkedin.APIkey}" +
       "&client_secret=#{Meteor.settings.linkedin.secretKey}"
-    HTTP.post (encodeURI url),
-      proxy: 'http://127.0.0.1:8080'
-      strictSSL: false
+    HTTP.post (encodeURI url), {}
+      #proxy: 'http://127.0.0.1:8080'
+      #strictSSL: false
     , (e, r) ->
       console.log 'Error', e if e
       linkedInState = LinkedInState.findOne()
@@ -125,8 +125,8 @@ Meteor.methods
       'sort=company-size'
     HTTP.get (encodeURI url),
       headers: headers
-      proxy: 'http://127.0.0.1:8080'
-      strictSSL: false
+      #proxy: 'http://127.0.0.1:8080'
+      #strictSSL: false
     , (e, r) ->
       console.log 'Error', e if e
       linkedInState = LinkedInState.findOne()
