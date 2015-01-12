@@ -24,7 +24,7 @@ Router.route '/_oauthlinkedin/', ->
 
 proxyTransactionForDev = (dict) ->
   if Meteor.settings.isDev
-    dict = _extend dict,
+    dict = _.extend dict,
       proxy: 'http://127.0.0.1:8080'
       strictSSL: false
   dict
@@ -101,7 +101,7 @@ Meteor.methods
   linkedindata: (params) ->
     check params, String
     linkedInState = LinkedInState.findOne()
-    if linkedInState.start? or linkedInState.start is undefined
+    if linkedInState.start is undefined
       start =  0
     else
       start = linkedInState.start + linkedInState.count
