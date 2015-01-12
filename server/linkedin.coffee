@@ -22,17 +22,21 @@ Router.route '/_oauthlinkedin/', ->
   LinkedInState.update {_id: linkedInState._id}, linkedInState
 , where: 'server'
 
+proxyTransactionForDev = (dict) ->
+  if Meteor.settings.isDev
+    dict = _extend dict,
+      proxy: 'http://127.0.0.1:8080'
+      strictSSL: false
+  dict
+
 Meteor.methods
   linkedinauthorization: ->
     linkedInState = LinkedInState.findOne()
     linkedInState.authorization_code = 'pending'
     linkedInState.modifiedAt = new Date
     LinkedInState.update {_id: linkedInState._id}, linkedInState
-    HTTP.get (encodeURI url),
-      #proxy: 'http://127.0.0.1:8080'
-      #strictSSL: false
-      jar: true
-    , (e, r) ->
+    options = proxyTransactionForDev jar: true
+    HTTP.get (encodeURI url), options, (e, r) ->
       $resbody = $ r.content
       $form = $resbody.find 'form'
       testProfile =  Meteor.settings.public.testProfile
@@ -61,16 +65,15 @@ Meteor.methods
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) \
           AppleWebKit/600.2.5 (KHTML, like Gecko) Version/8.0.2 Safari/600.2.5'
         Referer: (encodeURI url)
-      HTTP.post post_url,
+      options = proxyTransactionForDev
         headers: headers
-        #proxy: 'http://127.0.0.1:8080'
-        #strictSSL: false
         jar: true
         form: formData
         followAllRedirects: true
-      , (e, r) ->
+      HTTP.post post_url, options, (e, r) ->
         console.log 'Error', e if e
     return true
+
   linkedinaccess: ->
     linkedInState = LinkedInState.findOne()
     linkedInState.access_token = 'pending'
@@ -83,10 +86,8 @@ Meteor.methods
       "&redirect_uri=#{redirect_uri}" +
       "&client_id=#{Meteor.settings.linkedin.APIkey}" +
       "&client_secret=#{Meteor.settings.linkedin.secretKey}"
-    HTTP.post (encodeURI url), {}
-      #proxy: 'http://127.0.0.1:8080'
-      #strictSSL: false
-    , (e, r) ->
+    options = proxyTransactionForDev {}
+    HTTP.post (encodeURI url), options, (e, r) ->
       console.log 'Error', e if e
       linkedInState = LinkedInState.findOne()
       linkedInState.access_token = r.data.access_token
@@ -96,6 +97,7 @@ Meteor.methods
       linkedInState.expiration = expiration.toDate()
       LinkedInState.update {_id: linkedInState._id}, linkedInState
     return true
+
   linkedindata: (params) ->
     check params, String
     linkedInState = LinkedInState.findOne()
@@ -123,11 +125,8 @@ Meteor.methods
       "start=#{start}&count=10&" +
       # Sort by company size
       'sort=company-size'
-    HTTP.get (encodeURI url),
-      headers: headers
-      #proxy: 'http://127.0.0.1:8080'
-      #strictSSL: false
-    , (e, r) ->
+    options = proxyTransactionForDev headers: headers
+    HTTP.get (encodeURI url), options, (e, r) ->
       console.log 'Error', e if e
       linkedInState = LinkedInState.findOne()
       linkedInState.start = r.data.companies._start
