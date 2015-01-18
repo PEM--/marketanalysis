@@ -26,7 +26,6 @@ aldeed:autoform
 aldeed:collection2
 gadicohen:famous-views
 audit-argument-checks
-browser-policy
 pierreeric:fview-bksurfaceimage
 momentjs:moment
 rzymek:moment-locale-fr
@@ -34,3 +33,4 @@ service-configuration
 mjn:famous
 dandv:http-more
 aldeed:tabular
+browser-policy
